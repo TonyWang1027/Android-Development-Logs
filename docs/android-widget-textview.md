@@ -3,6 +3,7 @@
 #### setText
 
 *public final void setText (int resid)*
+
 This allows you to pass a int value into setText method
 
 ``` xml
@@ -18,6 +19,7 @@ myTextView.setText(R.string.textView);
 
 \
 *public final void setText (CharSequence text)*
+
 *CharSequence* is just an array of chars, it's equal to type "String".
 
 ``` java
