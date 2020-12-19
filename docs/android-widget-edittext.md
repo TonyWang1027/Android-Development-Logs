@@ -1,8 +1,9 @@
 ## Android.widget.EditText Class Information
-### Public Methods (official doc: https://developer.android.com/reference/android/widget/EditText)
+### Public Methods (official doc: (https://developer.android.com/reference/android/widget/EditText))
 #### getText
 
 *public Editable getText()*
+
 It returns **android.text.Editable** type, not **String** type. Use toString() method to get the actual string.
 
 Because, the return type Editable is implement CharSequence interface, so, it can pass into setText() method as an argument stright away.
