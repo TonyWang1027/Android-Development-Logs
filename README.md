@@ -1,2 +1,2 @@
 # Android-Development-Logs
-This is personal logs for android development.
+This is a personal log for android development.
