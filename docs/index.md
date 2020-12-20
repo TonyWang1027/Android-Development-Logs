@@ -9,3 +9,6 @@
 
 ### android.util
 [android.util.Log](https://tonywang1027.github.io/Android-Development-Logs/android-util-log)
+
+### How to start a new activity
+[Using android.content.intent](https://tonywang1027.github.io/Android-Development-Logs/start-a-new-activity)
