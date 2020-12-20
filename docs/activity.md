@@ -1,3 +1,71 @@
+## How to create an activity from sketch (not using activity_main.xml file)
+
+``` java
+public class MainActivity extends Activity {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // Create a LinearLayout
+        final LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);   // Set screan to vertical
+        setContentView(layout);   // Add layout to content view
+
+        // Create buttons
+        final Button btn1 = new Button(this);
+        btn1.setText(R.string.btn1_text);
+        final Button btn2 = new Button(this);
+        btn2.setText(R.string.btn2_text);
+        final Button btn3 = new Button(this);
+        btn3.setText(R.string.btn3_text);
+        final Button btn4 = new Button(this);
+        btn4.setText(R.string.btn4_text);
+
+        // Add these buttons into layout
+        layout.addView(btn1);
+        layout.addView(btn2);
+        layout.addView(btn3);
+        layout.addView(btn4);
+    }
+}
+```
+
+``` xml
+<!-- string.xml -->
+<resources>
+    <string name="app_name">JavaCodedUI</string>
+    <string name="btn1_text">Button#1</string>
+    <string name="btn2_text">Button#2</string>
+    <string name="btn3_text">Button#3</string>
+    <string name="btn4_text">Button#4</string>
+</resources>
+```
+
+``` xml
+<!-- AndroidManifest.xml -->
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.firstemptyapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FirstEmptyApp">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+```
+
+---
+
 ## How to create and call another activity
 ### android.content.Intent Class Information
 
