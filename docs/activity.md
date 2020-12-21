@@ -66,6 +66,45 @@ public class MainActivity extends Activity {
 
 ---
 
+## How to create a circle button
+1. Create a shape.xml file inside drawable folder
+    ``` xml
+    <!-- shape.xml -->
+    <?xml version="1.0" encoding="utf-8"?>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+        <solid android:color="#99FFFF"/>
+    </shape>
+    ```
+    android:shape="oval" - type of shape
+
+    android:color - change the color of the shape
+
+2. Code Part
+   ``` java
+   import android.app.Activity;
+   import android.os.Bundle;
+   import android.widget.Button;
+   import android.widget.LinearLayout;
+   public class MainActivity extends Activity {
+       public void onCreate (Bundle savedInstanceState) {
+           super.onCreate(savedInstanceState);
+
+           final LinearLayout layout = new LinearLayout(this);
+           layout.setOrientation(LinearLayout.VERTICAL);
+           setContentView(layout);
+
+           final Button btn1 = new Button(this);
+           btn1.setBackgroundResource(R.drawable.shape1);   // Customize background color
+           LinearLayout.LayoutParams LP_WW = new LinearLayout.LayoutParams(100, 100);
+           btn1.setLayoutParams(LP_WW);
+
+           layout.addView(btn1);
+   ```
+   ```LinearLayout.LayoutParams LP_WW = new LinearLayout.LayoutParams(100, 100);``` - set button width and height to 100dp.
+
+---
+
 ## How to create and call another activity
 ### android.content.Intent Class Information
 
