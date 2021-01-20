@@ -66,6 +66,133 @@ public class MainActivity extends Activity {
 
 ---
 
+## How to disable title bar for an Activity in XML
+Go to res/values/themes/themes.xml
+``` xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.EmptyProjectTest" parent="Theme.MaterialComponents.DayNight.NoActionBar">  <!-- NoActionBar will disable the title bar (action bar) -->
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
+```
+
+---
+
+## Instantiates a layout xml file into View object
+```LayoutInflater``` is used to instantiate xml file into a java object
+```inflate(int resource, ViewGroup root)``` Inflate a new view hierarchy from the specified xml resource.
+``` java
+// In TitleView.java
+public class TitleView extends RelativeLayout {
+
+    private final Button leftButton;
+    private final TextView titleText;
+
+    public TitleView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+
+        LayoutInflater.from(context).inflate(R.layout.title, this);  // Instantiates title.xml file into a java object
+
+        titleText = (TextView) findViewById(R.id.title_text);
+        leftButton = (Button) findViewById(R.id.button_left);
+
+        leftButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ((Activity) getContext()).finish();
+                Log.d("DEBUG-C", "Button clicked");
+            }
+        });
+    }
+}
+
+```
+
+``` xml
+<!-- In title.xml file (R.layout.title) -->
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="#ffcb05">
+
+    <Button
+        android:id="@+id/button_left"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:background="@android:color/black"
+        android:text="@string/back"
+        android:textColor="#fff" />
+
+    <TextView
+        android:id="@+id/title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="@string/this_is_title"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+</RelativeLayout>
+```
+
+``` xml
+<!-- In activity_main.xml file -->
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- add title view into main activity xml -->
+    <com.example.customwidget.TitleView
+        android:id="@+id/title_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="widgetClicked"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.example.customwidget.TitleView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+``` java
+// In MainActivity.java
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    // Whole widget clicked
+    public void widgetClicked(View v) {
+        Log.d("DEBUG-C", "widget clicked");
+    }
+}
+```
+
+---
+
 ## How to create a circle button
 1. Create a shape.xml file inside drawable folder
     ``` xml
