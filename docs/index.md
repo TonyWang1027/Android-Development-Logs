@@ -10,5 +10,8 @@
 ### android.util
 [android.util.Log](https://tonywang1027.github.io/Android-Development-Logs/android-util-log)
 
+### android concepts
+[android concepts](https://tonywang1027.github.io/Android-Development-Logs/android-concepts)
+
 ### How to start a new activity
 [Using android.content.intent](https://tonywang1027.github.io/Android-Development-Logs/activity)
