@@ -193,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
 ---
 
-## How to create a circle button
+## How to create a circle button (I)
 1. Create a shape.xml file inside drawable folder
     ``` xml
     <!-- shape.xml -->
@@ -401,3 +401,52 @@ public class MySecondActivity extends AppCompatActivity {
     }
 }
 ```
+
+---
+
+## Get attribute from layout xml file
+``` java
+String attrValue = attributeSet.getAttributeValue("http://schemas.android.com/apk/res-auto", "attributeName");
+```
+
+```getAttributeValue()``` method returns the value of the specified attribute as a string representation.
+
+First argument is the namespace of that attribute (type is String), second argument is the attribute name (type is String).
+
+---
+
+## How to create custom attributes in xml layout file
+1. Create a attrs.xml inside values folder.
+   ``` xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <declare-styleable name="CustomButtonWidget">
+            <attr name="describeText" format="reference|string" />
+            <attr name="index" format="reference|string"/>
+        </declare-styleable>
+    </resources>
+   ```
+   ```declare-styleable``` tag state which class is linking to.
+2. Add namespace to the top of the layout tag
+   In this case, I created a namespace called "myview"
+   ``` xml
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:myview="http://schemas.android.com/apk/res-auto">
+
+        <com.example.custommenu.CustomButtonWidget
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            myview:describeText="Radio Panel"
+            myview:index="0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+   ```
+    Then, we can use ```describeText``` attribute and ```index``` attribute these we just created inside attrs.xml file.
+
+    To get attritube from this layout xml file, we can use ```attributeSet.getAttributeValue(String namespace, String attribute)``` method.
+    ``` java
+    String index = attributeSet.getAttributeValue("http://schemas.android.com/apk/res-auto", "index")  // This will return a String
+    ```
