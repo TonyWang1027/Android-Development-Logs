@@ -1,3 +1,5 @@
+# Activity
+
 ## How to create an activity from sketch (not using activity_main.xml file)
 
 ``` java
